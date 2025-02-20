@@ -1,0 +1,15 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "create-log-dirs",
+            "type": "shell",
+            "command": "mkdir",
+            "args": [
+                "-p",
+                "./logs/LongForecasting"
+            ],
+            "problemMatcher": []
+        }
+    ]
+}
