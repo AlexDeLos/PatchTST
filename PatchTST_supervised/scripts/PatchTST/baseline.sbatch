@@ -25,8 +25,7 @@ data_name=custom
 
 random_seed=2021
 pred_len=96
-echo we are here
-python -u run_longExp.py \
+srun python -u run_longExp.py \
     --random_seed $random_seed \
     --is_training 1 \
     --root_path $root_path_name \
