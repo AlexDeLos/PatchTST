@@ -7,14 +7,6 @@
 
 source /opt/insy/miniconda/3.9/etc/profile.d/conda.sh
 conda activate myenv
-
-if [ ! -d "./logs" ]; then
-    mkdir ./logs
-fi
-
-if [ ! -d "./logs/LongForecasting" ]; then
-    mkdir ./logs/LongForecasting
-fi
 seq_len=336
 model_name=PatchTST
 
@@ -26,16 +18,16 @@ data_name=custom
 random_seed=2021
 pred_len=96
 srun python -u run_longExp.py \
-    --random_seed $random_seed \
+    --random_seed 2021 \
     --is_training 1 \
-    --root_path $root_path_name \
-    --data_path $data_path_name \
-    --model_id $model_id_name_$seq_len'_'$pred_len \
-    --model $model_name \
-    --data $data_name \
+    --root_path ./dataset/ \
+    --data_path weather.csv \
+    --model_id weather_336_96 \
+    --model PatchTST \
+    --data custom \
     --features M \
-    --seq_len $seq_len \
-    --pred_len $pred_len \
+    --seq_len 336 \
+    --pred_len 96 \
     --enc_in 21 \
     --e_layers 3 \
     --n_heads 16 \
@@ -49,4 +41,4 @@ srun python -u run_longExp.py \
     --des 'Exp' \
     --train_epochs 100\
     --patience 20\
-    --itr 1 --batch_size 128 --learning_rate 0.0001 >logs/LongForecasting/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len.log 
+    --itr 1 --batch_size 128 --learning_rate 0.0001 >logs/LongForecasting/PatchTST_weather_336_96.log 
